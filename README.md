@@ -40,12 +40,12 @@ Come back to the home directory and structure should look like this :
 
 ```bash
 ├── client
-│   ├── package.json
-│   ├── src
-│	  ├── yarn.lock
-│	  ├── public
-│	  ├── .gitignore
-│   └── node_modules
+│ ├── package.json
+│ ├── src
+│ ├── yarn.lock
+│ ├── public
+│ ├── .gitignore
+│ └── node_modules
 ├── node_modules
 ├── README.md
 ├── .gitignore
