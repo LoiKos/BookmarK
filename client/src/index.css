@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, Lucida Grande, sans-serif;
+}
+
+.item_thumb{
+	height: 100px !important;
+	width: auto;
+}
+
+a.card-footer-item.has-text-warning:hover{
+	background-color: #ffdd57;
+	color:#fff !important;
+}
+
+i.fa.fa-pencil{
+	padding-right: 10px;
+	margin-left: -10px;
+}
+
+i.fa.fa-trash{
+	padding-right: 10px;
+	margin-left: -10px;
+}
+
+a.card-footer-item.has-text-danger:hover{
+	background-color: #ff3860;
+	color:#fff !important;
+}
+
+.hide{
+	display: none !important;
+}
+
+form{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.tag_container{
+	overflow: scroll;
+}
+
+.media_info p{
+	display: inline-block;
+}
+
+.tag-modal{
+	display: block !important;
+	margin: 5px;
+}
+
+.tag{
+	margin-right: 5px;
+}
+
+.subtitle:not(:last-child){
+	margin-bottom: 0.25em !important;
+}
+
+.subtitle:last-child{
+	margin-bottom: 1.5em !important;
+}
+
+.media_tags {
+	overflow: scroll;
+	height: 50px;
+}
+
+.tag.button{
+	float: right;
+	vertical-align: middle !important;
+	padding-bottom: 0px !important;
+	padding-top: 0px !important;
+}
+
+.tagEdit{ 
+	display: inline-block;
+	float: right;
+ }
+
+ .tagEdit input{ 
+	width: 300px;
+	float: right;
+	font-size: 0.7rem !important;
+ }
+
+.tagEdit .tag.button.is-success {
+	margin-left: 3px;
+}
+
+.tagEdit p a.delete.is-small{
+	vertical-align: middle;
+	margin-right: 2px;
+	margin-top: -3px;
+}
+
+
+form.modal-card-title{
+	margin-top:0px;
+	margin-bottom: 0px;
+	margin-right: 10px;
+}

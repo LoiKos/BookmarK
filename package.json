@@ -1,0 +1,26 @@
+{
+  "name": "bookmark",
+  "version": "1.0.0",
+  "description": "Simple bookmark with reactJS",
+  "main": "server.js",
+  "scripts": {
+    "start": "concurrently \"cd client && yarn start\" \"ENV=dev PORT=4000 nodemon server.js\"",
+    "build": "npm run-script clean && cd client && yarn build",
+    "clean":"rm -rf client/build",
+    "start-production": "npm run-script build && ENV=production PORT=8080 node server.js"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "LoiKos",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.12.1"
+  }
+}
