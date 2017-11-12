@@ -1,10 +1,10 @@
 # BookMark App
 
-## Required
+## Environnement 
 
-NodeJS / NPM
+NodeJS / NPM : v8.1.2 / v5.5.1
 
-Yarn 
+Yarn :  v0.24.6
 
 ## Create-React APP
 
@@ -16,36 +16,41 @@ If you haven't install create-react-app yet, you can install it via npm :
 npm install -g create-react-app 
 ```
 
+this is the recommended way to create new React projet from [Official Documentation](https://reactjs.org/docs/installation.html#creating-a-new-application) 
+
 ## Install
 
-First clone this repository and install libraries: 
+Just follow theses few steps : 
 
 ```shell 
-git clone https://github.com/LoiKos/Bookmarks.git *appName*
+git clone https://github.com/LoiKos/BookmarK.git *appName*
+
 cd appName
+
+yarn install
+
+cd client
+
 yarn install
 ```
 
-Then you need to add a little proxy to make this work correctly :
+yarn install use a custom script that run the good 
 
-```shell 
-git clone https://github.com/LoiKos/bookmarkServer.git api
-cd api
-npm install
-```
 Come back to the home directory and structure should look like this :
 
 ```bash
-├── api
-│   ├── favicon.ico
+├── client
 │   ├── package.json
-│   ├── server.json
+│   ├── src
+│	├── yarn.lock
+│	├── public
+│	├── .gitignore
 │   └── node_modules
 ├── node_modules
-├── public
-├── src
-├── package.json
 ├── README.md
+├── .gitignore
+├── server.js
+├── package.json
 └── yarn.lock
 ```
 
@@ -53,15 +58,27 @@ Care to not change the name of the api directory or you need to updage function 
 
 ## Run 
 
-this is the easiest part, just run :
+```bash 
+  yarn start
+```
+
+## Build for production the Client  
 
 ```bash 
-  yarn start-with-api
+  yarn build
 ```
-this should run the wepback dev serv of create-react-app but also api proxy to forward request on Flickr and Vimeo
 
+## Run as in production the Client ( this will execute a build )
 
-## Test Example links 
+```bash 
+  yarn start-production
+```
+
+## Why does i need a Server.js as create-react-app already contain one ?
+
+The problem to only use the web server provide by create-react-app is that you can't proxyfied API call and it result to problem with CORS.
+
+## Example of Viméo and Flickr links 
 
 https://vimeo.com/8680681
 
