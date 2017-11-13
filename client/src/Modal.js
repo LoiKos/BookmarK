@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
 
-class Modal extends React.Component {
+class Modal extends Component {
 
 	constructor(props) {
        super(props);
 
        let edit = []
        this.props.tag.map((element,index) => {
-       	 edit[index] = {show:false,value:element}
+       	 return edit[index] = { 
+          show:false,
+          value:element
+          }
        })
 
        this.state = {
         tags: Array.from(this.props.tag),
+        savetags: Array.from(this.props.tag),
         newTag:'',
         edit:edit,
       }
-      this.handleInputChange = this.handleInputChange.bind(this);
   	}
 
-  	handleInputChange(event){
-  		this.setState({newTag: event.target.value});
+  	handleInputChange(e){
+  		this.setState({newTag: e.target.value});
   	}
 
   	handleSubmit(event){
@@ -37,21 +40,16 @@ class Modal extends React.Component {
   	}
 
   	dismiss(){
-  		let edit = []
-       	this.props.tag.map((element,index) => {
-       	 edit[index] = {show:false,value:element}
-       	})
-
   		this.setState({
-  			tags: Array.from(this.props.tag),
-  			newTag:'',
-  			edit:edit
+  			tags: Array.from(this.state.savetags),
+  			newTag:''
   		});
   		this.props.onClick()
   	}
 
   	save(){
   		this.props.handleUpdate(this.state.tags)
+      this.setState({savetags: Array.from(this.state.tags)})
   		this.props.onClick()
   	}
 
@@ -75,7 +73,7 @@ class Modal extends React.Component {
   		this.setState({edit:edit})
   	}
 
-  	changeTag(e,index){
+    changeInputTag(e,index){
   		let edit = this.state.edit
   		edit[index].value = e.target.value
   		this.setState({edit:edit})
@@ -99,7 +97,7 @@ class Modal extends React.Component {
 			  <div className="modal-card">
 		    	<header className="modal-card-head">
 		      		<form className="modal-card-title" onSubmit={(e) => this.handleSubmit(e)}>
-		      			<input className="input" type="text" placeholder="Ajouter un tag" value={this.state.newTag}  onChange={this.handleInputChange} />
+		      			<input className="input" type="text" placeholder="Ajouter un tag" value={this.state.newTag}  onChange={(e) => this.handleInputChange(e)} />
 		      		</form>
 		      		<button className="delete" aria-label="close" onClick={()=>this.dismiss()}></button>
 		   		</header>
@@ -116,9 +114,9 @@ class Modal extends React.Component {
 								<button className="tag button is-success" onClick={() => this.editTag(index)}> Save </button>
 								<div class="field has-addons">
 								<p class="control">
-						          <a className="delete is-small" aria-label="close" onClick={()=>this.hideEditForm(index)}></a>
-       							</p>
-								<input className="input is-small" type="text" value={this.state.edit[index].value} onChange={(e) => this.changeTag(e,index)}/>
+						          <a className="delete is-small" aria-label="close" onClick={ () => this.hideEditForm(index) }>x</a>
+       					</p>
+								<input className="input is-small" type="text" value={this.state.edit[index].value} onChange={(e) => this.changeInputTag(e,index)}/>
 								</div>
 								</div>
 								: 
