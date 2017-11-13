@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Item from './Item';
-import AddForm from './AddForm';
+import AddLink from './AddLink';
+import Paginator from './Paginator';
 
 
 class Bookmark extends Component {
@@ -12,7 +12,8 @@ class Bookmark extends Component {
        }
   	}
 
-  	updateList(obj){
+  	newLink(obj){
+      console.log(obj)
   		let list = this.state.mediaList
   		list.splice(0,0,obj)
   		this.setState({
@@ -21,30 +22,23 @@ class Bookmark extends Component {
   	}
 
   	checkIfExist(url){
-  		let exist = false
-  		this.state.mediaList.map((media) => {
-  			if(media.url === url) {
-  			 exist = true 
-  			}
-  		})
+  		let exist = this.state.mediaList.find( value => { return value.url === url } )
   		return exist
   	}
 
-  	delete(id){
+  	deleteLink(id){
+      console.log(this.state.mediaList)
       let list = this.state.mediaList.filter(item => item.url !== id);
       this.setState({
          mediaList: list, 
        })
+      console.log(this.state.mediaList)
   	}
 
-  	update(id,tags){
-  		console.log(id,tags)
+  	updateLink(id,tags){
   		let newList = this.state.mediaList
-  		newList.map((media) => {
-  			if(media.url === id){
-  				media.tags = tags
-  			}
-  		})
+      let objIndex = newList.findIndex((obj => obj.url === id))
+      newList[objIndex].tags = tags
   		this.setState({
          mediaList: newList, 
        })
@@ -53,10 +47,12 @@ class Bookmark extends Component {
 	render() {
 		return(
 			<div>
-				<AddForm checkIfExist={(url) => this.checkIfExist(url)} updateList={(obj) => this.updateList(obj)}/>
+				<AddLink checkIfExist={(url) => this.checkIfExist(url)} newLink={(obj) => this.newLink(obj)}/>
+
 				{	
-				  this.state.mediaList.length ? this.state.mediaList.map((media) =>
- 					<Item key={media.url} media={media} handleDelete={(id) => this.delete(id)} handleUpdate={(id,tags) => this.update(id,tags)}/>) : 
+				  this.state.mediaList.length ? 
+            <Paginator items={this.state.mediaList} handleDelete={(id) => this.deleteLink(id)} handleUpdate={(id,tags) => this.updateLink(id,tags)}/>
+          : 
 			  		(
 			  			<div className="columns">
 							<div className="column is-half is-offset-one-quarter">
