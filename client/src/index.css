@@ -4,6 +4,18 @@ body {
   font-family: Helvetica, Arial, Lucida Grande, sans-serif;
 }
 
+hr {
+	margin: 1.5rem 0.5rem 0 0 !important;
+}
+
+.pagination-options{
+	padding-top: 0px !important;
+}
+
+.pagination p {
+	margin-right: 10px;
+}
+
 .item_thumb{
 	height: 100px !important;
 	width: auto;
