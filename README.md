@@ -40,12 +40,12 @@ Come back to the home directory and structure should look like this :
 
 ```bash
 ├── client
-│   ├── package.json
-│   ├── src
-│	├── yarn.lock
-│	├── public
-│	├── .gitignore
-│   └── node_modules
+│ ├── package.json
+│ ├── src
+│ ├── yarn.lock
+│ ├── public
+│ ├── .gitignore
+│ └── node_modules
 ├── node_modules
 ├── README.md
 ├── .gitignore
@@ -76,7 +76,7 @@ Care to not change the name of the api directory or you need to updage function 
 
 ## Why does i need a Server.js as create-react-app already contain one ?
 
-The problem to only use the web server provide by create-react-app is that you can't proxyfied API call and it result to problem with CORS.
+The problem to only use the web server provide by create-react-app is that you can't proxyfied API call and it results with CORS problems.
 
 ## Example of Viméo and Flickr links 
 
