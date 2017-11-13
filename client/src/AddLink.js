@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 const apiUrlVimeo = '/vimeo?url='
 const apiUrlFlickr = '/flickr?url='
 
-class AddForm extends Component {
+class AddLink extends Component {
 
 	constructor(props) {
        super(props);
@@ -16,11 +16,10 @@ class AddForm extends Component {
         	button: `button is-primary`
     		}
        }
-       this.handleInputChange = this.handleInputChange.bind(this);
   	}
 
-  	handleInputChange(event) {
-    	this.setState({url: event.target.value});
+  	addUrlChange(e) {
+    	this.setState({url: e.target.value});
   	}
 
   	buttonStartLoading(){
@@ -112,7 +111,7 @@ class AddForm extends Component {
 
 			if(!this.props.checkIfExist(video_url)){
 				this.buttonStopLoading()
-				this.props.updateList(obj)
+				this.props.newLink(obj)
 			} else {
 				this.showAlreadyExist()
 				return
@@ -163,7 +162,7 @@ class AddForm extends Component {
 					<form onSubmit={(e) => this.submitForm(e)}>
 					<div className="field has-addons">
 						  <div className="control has-icons-left has-icons-right is-expanded">
-						    <input className={this.state.classes.input} type="text" placeholder="Url Viméo ou Flickr" value={this.state.url}  onChange={this.handleInputChange} />
+						    <input className={this.state.classes.input} type="text" placeholder="Url Viméo ou Flickr" value={this.state.url}  onChange={(e) => this.addUrlChange(e)} />
 						    <span className="icon is-small is-left">
 						      <i className="fa fa-vimeo"></i><i className="fa fa-flickr" aria-hidden="true"></i>
 						    </span>
@@ -182,4 +181,4 @@ class AddForm extends Component {
 	}
 }
 
-export default AddForm
+export default AddLink
