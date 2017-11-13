@@ -24,7 +24,7 @@ class ActionFooter extends Component {
 							<i className="fa fa-pencil" aria-hidden="true"></i>
 			    		Edit
 			    	</a>
-				    <a onClick={this.props.handleClick} className="card-footer-item has-text-danger">
+				    <a onClick={this.props.handleDelete} className="card-footer-item has-text-danger">
 				    	<i className="fa fa-trash" aria-hidden="true"></i>
 				    	Delete
 				    </a>
