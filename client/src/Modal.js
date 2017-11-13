@@ -15,17 +15,17 @@ class Modal extends Component {
 
        this.state = {
         tags: Array.from(this.props.tag),
-        savetags: Array.from(this.props.tag),
+        savedtags: Array.from(this.props.tag),
         newTag:'',
         edit:edit,
       }
   	}
 
-  	handleInputChange(e){
+  	newTagInputChange(e){
   		this.setState({newTag: e.target.value});
   	}
 
-  	handleSubmit(event){
+  	newTag(event){
   		event.preventDefault();
 
   		if(!this.state.newTag.length){
@@ -39,17 +39,25 @@ class Modal extends Component {
   		this.setState({tags: tags,edit:edit});
   	}
 
-  	dismiss(){
+  	dismissModal(){
+      let edit = []
+      this.state.savedtags.map((element,index) => {
+         return edit[index] = { 
+          show:false,
+          value:element
+          }
+       })
   		this.setState({
-  			tags: Array.from(this.state.savetags),
-  			newTag:''
+  			tags: Array.from(this.state.savedtags),
+  			newTag:'',
+        edit:edit
   		});
   		this.props.onClick()
   	}
 
-  	save(){
+  	saveUpdates(){
   		this.props.handleUpdate(this.state.tags)
-      this.setState({savetags: Array.from(this.state.tags)})
+      this.setState({savedtags: Array.from(this.state.tags)})
   		this.props.onClick()
   	}
 
@@ -73,13 +81,13 @@ class Modal extends Component {
   		this.setState({edit:edit})
   	}
 
-    changeInputTag(e,index){
+    changeEditTagInput(e,index){
   		let edit = this.state.edit
   		edit[index].value = e.target.value
   		this.setState({edit:edit})
   	}
 
-  	editTag(index){
+  	saveTagEdit(index){
   		let tags = this.state.tags
   		let edit = this.state.edit
   		tags[index] = edit[index].value
@@ -96,10 +104,10 @@ class Modal extends Component {
 			  <div className="modal-background"></div>
 			  <div className="modal-card">
 		    	<header className="modal-card-head">
-		      		<form className="modal-card-title" onSubmit={(e) => this.handleSubmit(e)}>
-		      			<input className="input" type="text" placeholder="Ajouter un tag" value={this.state.newTag}  onChange={(e) => this.handleInputChange(e)} />
+		      		<form className="modal-card-title" onSubmit={ (e) => this.newTag(e) }>
+		      			<input className="input" type="text" placeholder="Ajouter un tag" value={this.state.newTag}  onChange={ (e) => this.newTagInputChange(e) } />
 		      		</form>
-		      		<button className="delete" aria-label="close" onClick={()=>this.dismiss()}></button>
+		      		<button className="delete" aria-label="close" onClick={ () => this.dismissModal() }></button>
 		   		</header>
 		    <section className="modal-card-body">
 		    {
@@ -111,12 +119,12 @@ class Modal extends Component {
 							</span>
 							<button className="tag button is-danger" onClick={() => this.removeTag(index)}> Delete </button>
 							{ this.state.edit[index].show ? <div className="tagEdit">
-								<button className="tag button is-success" onClick={() => this.editTag(index)}> Save </button>
+								<button className="tag button is-success" onClick={() => this.saveTagEdit(index)}> Save </button>
 								<div class="field has-addons">
 								<p class="control">
 						          <a className="delete is-small" aria-label="close" onClick={ () => this.hideEditForm(index) }>x</a>
        					</p>
-								<input className="input is-small" type="text" value={this.state.edit[index].value} onChange={(e) => this.changeInputTag(e,index)}/>
+								<input className="input is-small" type="text" value={this.state.edit[index].value} onChange={(e) => this.changeEditTagInput(e,index)}/>
 								</div>
 								</div>
 								: 
@@ -128,8 +136,8 @@ class Modal extends Component {
 		    }
 		    </section>
 		    <footer className="modal-card-foot">
-		      <button className="button is-success" onClick={() => this.save() }>Save changes</button>
-		      <button className="button" onClick={()=>this.dismiss()}>Cancel</button>
+		      <button className="button is-success" onClick={() => this.saveUpdates() }>Save changes</button>
+		      <button className="button" onClick={ ()=>this.dismissModal() }>Cancel</button>
 		    </footer>
 		  </div>
 		</div>
